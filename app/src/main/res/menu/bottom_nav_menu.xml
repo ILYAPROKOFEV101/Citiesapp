@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_cities"
+        android:icon="@drawable/location_city_24px"
+        android:title="Города" />
+    <item
+        android:id="@+id/nav_menu"
+        android:icon="@drawable/radio_button_checked_24px"
+        android:title="Меню" />
+</menu>
