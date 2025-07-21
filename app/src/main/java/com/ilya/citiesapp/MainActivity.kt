@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.nav_cities -> {
                     selectedList?.let { list -> openCitiesFragment(list) }
-                    true
+                    false
                 }
                 R.id.nav_menu -> {
                     MenuBottomSheet { selected ->

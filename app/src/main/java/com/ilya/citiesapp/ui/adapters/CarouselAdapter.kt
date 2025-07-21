@@ -1,9 +1,11 @@
 package com.ilya.citiesapp.ui.adapters
 
 import android.graphics.Color
+import android.graphics.Outline
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ilya.citiesapp.R
@@ -28,7 +30,9 @@ class CarouselAdapter(
         return if (position == items.size) TYPE_ADD else TYPE_ITEM
     }
 
-    fun getItemAt(position: Int): CityList = items[position]
+    fun getItemAt(pos: Int): CityList {
+        return items.getOrNull(pos).takeIf { pos < items.size } ?: items.last()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -52,19 +56,37 @@ class CarouselAdapter(
         }
     }
 
+
+
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val colorCircle: View = itemView.findViewById(R.id.colorCircle)
 
         fun bind(list: CityList, isSelected: Boolean) {
+            // Применяем цвет и делаем закругление
             colorCircle.setBackgroundColor(Color.parseColor(list.colorHex))
+
+            // Программно закругляем в круг (если ширина и высота равны)
+            colorCircle.clipToOutline = true
+            colorCircle.outlineProvider = object : ViewOutlineProvider() {
+                override fun getOutline(view: View, outline: Outline) {
+                    val size = view.width.coerceAtMost(view.height)
+                    outline.setOval(0, 0, size, size)
+                }
+            }
+
+            // Масштабируем если выбран
             val scale = if (isSelected) 1.4f else 1.0f
-            itemView.scaleX = scale
-            itemView.scaleY = scale
+            colorCircle.scaleX = scale
+            colorCircle.scaleY = scale
 
             itemView.setOnClickListener {
                 onItemSelected(list)
             }
+
+            // Обновим отображение после layout
+            colorCircle.postInvalidate()
         }
+
     }
 
     inner class AddViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
