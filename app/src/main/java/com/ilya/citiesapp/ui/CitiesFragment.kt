@@ -18,27 +18,34 @@ class CitiesFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CitiesAdapter
 
+    companion object {
+        private const val ARG_CITIES = "arg_cities"
+
+        fun newInstance(cities: ArrayList<City>): CitiesFragment {
+            val fragment = CitiesFragment()
+            val args = Bundle()
+            args.putParcelableArrayList(ARG_CITIES, cities)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.cities_fragment, container, false)
+    ): View = inflater.inflate(R.layout.cities_fragment, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = view.findViewById(R.id.citiesRecyclerView)
-        adapter = CitiesAdapter(getCities())
+
+        val cities = arguments?.getParcelableArrayList<City>(ARG_CITIES) ?: listOf()
+        adapter = CitiesAdapter(cities.toMutableList())
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val callback = ItemTouchHelperCallback(adapter)
-        val touchHelper = ItemTouchHelper(callback)
+        val touchHelper = ItemTouchHelper(ItemTouchHelperCallback(adapter))
         touchHelper.attachToRecyclerView(recyclerView)
     }
-
-    private fun getCities(): MutableList<City> = mutableListOf(
-        City("Париж", "III век до н. э."),
-        City("Вена", "1147 год"),
-        City("Берлин", "1237 год"),
-        City("Варшава", "1321 год"),
-        City("Милан", "1899 год")
-    )
 }
+
+

@@ -12,7 +12,7 @@ import com.ilya.citiesapp.data.CityList
 class CarouselAdapter(
     private val items: List<CityList>,
     private val onItemSelected: (CityList) -> Unit,
-    private val onAddNewClicked: () -> Unit
+    private val onAddClicked: () -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -20,11 +20,15 @@ class CarouselAdapter(
         private const val TYPE_ADD = 1
     }
 
+    var selectedPosition = 0
+
     override fun getItemCount(): Int = items.size + 1
 
     override fun getItemViewType(position: Int): Int {
         return if (position == items.size) TYPE_ADD else TYPE_ITEM
     }
+
+    fun getItemAt(position: Int): CityList = items[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -39,20 +43,27 @@ class CarouselAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ItemViewHolder) {
-            holder.bind(items[position])
-        } else if (holder is AddViewHolder) {
-            holder.itemView.setOnClickListener { onAddNewClicked() }
+            val cityList = items[position]
+            holder.bind(cityList, position == selectedPosition)
+        } else {
+            holder.itemView.setOnClickListener {
+                onAddClicked()
+            }
         }
     }
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val shortName: TextView = itemView.findViewById(R.id.shortName)
-        private val indicator: View = itemView.findViewById(R.id.colorIndicator)
+        private val colorCircle: View = itemView.findViewById(R.id.colorCircle)
 
-        fun bind(cityList: CityList) {
-            shortName.text = cityList.shortName
-            indicator.setBackgroundColor(Color.parseColor(cityList.colorHex))
-            itemView.setOnClickListener { onItemSelected(cityList) }
+        fun bind(list: CityList, isSelected: Boolean) {
+            colorCircle.setBackgroundColor(Color.parseColor(list.colorHex))
+            val scale = if (isSelected) 1.4f else 1.0f
+            itemView.scaleX = scale
+            itemView.scaleY = scale
+
+            itemView.setOnClickListener {
+                onItemSelected(list)
+            }
         }
     }
 

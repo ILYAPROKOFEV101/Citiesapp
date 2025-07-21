@@ -1,24 +1,17 @@
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="100dp"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:padding="8dp">
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:layout_margin="8dp">
 
     <ImageView
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:id="@+id/addIcon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/circle_add"
         android:src="@drawable/add_24px"
-        android:contentDescription="Add"
-        app:tint="@color/black" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:layout_marginTop="8dp" />
-</LinearLayout>
+        android:scaleType="centerInside"
+        android:padding="24dp"
+        android:layout_gravity="center" />
+</FrameLayout>
