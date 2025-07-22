@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bottomSheetContainer"
@@ -17,15 +16,23 @@
         android:clipChildren="false"
         android:clipToPadding="false">
 
+        <!-- Кнопка закрытия/открытия BottomSheet -->
+        <ImageButton
+            android:id="@+id/expandIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Toggle bottom sheet"
+            android:src="@drawable/stat_minus_2_24px" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/carouselRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="208dp"
-            android:orientation="horizontal"
+            android:layout_height="232dp"
             android:clipChildren="false"
             android:clipToPadding="false"
-            />
-
+            android:orientation="horizontal"
+            android:paddingTop="100dp" />
 
         <TextView
             android:id="@+id/fullListName"

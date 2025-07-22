@@ -36,27 +36,21 @@ android {
         jvmTarget = "11"
     }
 }
-
+// hello
 dependencies {
 
 
     implementation("androidx.recyclerview:recyclerview:1.4.0")
-// Актуальная версия
-    // Room
     implementation ("androidx.room:room-runtime:2.7.2")
     kapt ("androidx.room:room-compiler:2.7.2")
 
-    // Опционально: поддержка Kotlin Coroutines
     implementation ("androidx.room:room-ktx:2.7.2")
 
-    // Gson для сериализации (если используешь)
     implementation ("com.google.code.gson:gson:2.13.1")
 
 
-    // Kotlin coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
-// ViewModel + LiveData
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.2")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.9.2")
 
