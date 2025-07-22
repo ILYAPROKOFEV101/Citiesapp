@@ -1,6 +1,5 @@
-<!-- item_city_list.xml -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="100dp"
     android:layout_height="wrap_content"
     android:layout_margin="8dp">
 
@@ -8,8 +7,9 @@
         android:id="@+id/colorCircle"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_margin="8dp"
+        android:layout_gravity="center"
         android:background="@drawable/circle_background" />
 
 </FrameLayout>
+
 
