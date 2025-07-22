@@ -39,6 +39,9 @@ android {
 
 dependencies {
 
+
+    implementation("androidx.recyclerview:recyclerview:1.4.0")
+// Актуальная версия
     // Room
     implementation ("androidx.room:room-runtime:2.7.2")
     kapt ("androidx.room:room-compiler:2.7.2")

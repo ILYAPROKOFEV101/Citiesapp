@@ -5,19 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="true"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:clipChildren="false"
+        android:clipToPadding="false">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/carouselRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:orientation="horizontal" />
+            android:layout_height="208dp"
+            android:orientation="horizontal"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            />
+
 
         <TextView
             android:id="@+id/fullListName"
@@ -29,11 +37,5 @@
             android:paddingTop="8dp" />
 
         <!-- Здесь можешь добавить список городов выбранного набора -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/selectedCitiesRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:nestedScrollingEnabled="false" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
